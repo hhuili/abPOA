@@ -1,15 +1,17 @@
-# pyabpoa: abPOA Python interface
+# telox-pyabpoa: namespaced abPOA Python interface
 ## Introduction
-pyabpoa provides an easy-to-use interface to [abPOA](https://github.com/yangao07/abPOA), it contains all the APIs that can be used to perform MSA for a set of sequences and consensus calling from the final alignment graph.
+`telox-pyabpoa` is a namespaced fork of the [abPOA](https://github.com/yangao07/abPOA)
+Python interface. It adds an opt-in 128-character ASCII alphabet for tokenized
+TVR consensus generation while retaining the upstream DNA and amino-acid modes.
 
 ## Installation
 
-### Install pyabpoa with pip
+### Install telox-pyabpoa with pip
 
-pyabpoa can be installed with pip:
+The source distribution can be installed with pip:
 
 ```
-pip install pyabpoa
+pip install telox-pyabpoa
 ```
 
 ### Install pyabpoa from source
@@ -23,7 +25,7 @@ make install_py
 ## Examples
 The following code illustrates how to use pyabpoa.
 ```
-import pyabpoa as pa
+import telox_pyabpoa as pa
 a = pa.msa_aligner()
 seqs=[
 'CCGAAGA',
@@ -57,14 +59,15 @@ python ./python/example.py
 
 ## APIs
 
-### Class pyabpoa.msa_aligner
+### Class telox_pyabpoa.msa_aligner
 ```
-pyabpoa.msa_aligner(aln_mode='g', ...)
+telox_pyabpoa.msa_aligner(aln_mode='g', ...)
 ```
 This constructs a multiple sequence alignment handler of pyabpoa, it accepts the following arguments:
 
 * **aln_mode**: alignment mode. 'g': global, 'l': local, 'e': extension; default: **'g'**
 * **is_aa**: input is amino acid sequence; default: **False**
+* **is_ascii**: use a direct 128-character ASCII alphabet; default: **False**
 * **match**: match score; default: **2**
 * **mismatch**: match penaty; default: **4**
 * **score_matrix**: scoring matrix file, **match** and **mismatch** are not used when **score_matrix** is used; default: **''**

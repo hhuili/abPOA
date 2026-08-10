@@ -1,4 +1,10 @@
 # abPOA: adaptive banded Partial Order Alignment
+> **TeloXplorer fork:** this branch packages the Python extension as
+> `telox-pyabpoa` / `telox_pyabpoa` and adds an opt-in 128-character ASCII
+> alphabet for tokenized telomere variant repeat consensus generation. It is
+> based on upstream abPOA v1.5.6; the original implementation and citation
+> remain unchanged.
+
 [![Latest Release](https://img.shields.io/github/release/yangao07/abPOA.svg?label=Release)](https://github.com/yangao07/abPOA/releases/latest)
 [![Github All Releases](https://img.shields.io/github/downloads/yangao07/abPOA/total.svg?label=Download)](https://github.com/yangao07/abPOA/releases)
 [![BioConda Install](https://img.shields.io/conda/dn/bioconda/abpoa.svg?style=flag&label=BioConda%20install)](https://anaconda.org/bioconda/abpoa)

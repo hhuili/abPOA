@@ -74,9 +74,9 @@ def set_seq_int_dict(m):
     elif m == 27:  # ACGTN    ==> 01234, BDEFH... ==> 56789...
         seqs = 'ACGTNBDEFHIJKLMOPQRSUVWXYZ*'
         ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
-    elif m == 128: # Custom ASCII support for tokenized TVRs
-        seq2int_dict = dd(lambda: 127) 
-        int2seq_dict = dd(lambda: '~')
+    elif m == 128:  # Custom ASCII support for tokenized TVRs
+        seq2int_dict = dd(lambda: 127)
+        int2seq_dict = dd(lambda: chr(127))
         for i in range(128):
             seq2int_dict[chr(i)] = i
             int2seq_dict[i] = chr(i)
@@ -100,7 +100,6 @@ cdef class msa_aligner:
     cdef char* _score_mat_fn
     cdef bytes _score_mat_fn_b
 
-    # Add is_ascii=False to the signature
     def __cinit__(self, aln_mode='g', is_aa=False, is_ascii=False,
                   match=2, mismatch=4, score_matrix=b'', gap_open1=4, gap_open2=24, gap_ext1=2, gap_ext2=1,
                   extra_b=10, extra_f=0.01,
@@ -116,7 +115,9 @@ cdef class msa_aligner:
         else:
             raise Exception('Unknown align mode: {}'.format(aln_mode))
             
-        # Add the routing for new 128 character mode
+        if is_ascii and is_aa:
+            raise ValueError('is_ascii and is_aa cannot both be enabled')
+
         if is_ascii:
             self.abpt.m = 128
             self.abpt.mat = <int*>malloc(128 * 128 * cython.sizeof(int))
@@ -358,4 +359,3 @@ cdef class msa_aligner:
                     msa_seq1 += self.int2seq_dict[c]
                 msa_seq.append(msa_seq1)
         return msa_result(seq_n, n_cons, clu_n_seq, clu_read_ids, cons_len, cons_seq, cons_cov, msa_len, msa_seq)
-

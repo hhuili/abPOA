@@ -6,11 +6,19 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pyabpoa"
-version = "1.5.6"
-urls = {Project-URL = "https://github.com/yangao07/abPOA"}
-authors = [{name = "Yan Gao", email = "yangao@ds.dfci.harvard.edu"}]
+name = "telox-pyabpoa"
+version = "1.5.6.post1"
+authors = [
+    {name = "Yan Gao", email = "yangao@ds.dfci.harvard.edu"},
+    {name = "Huihui Li", email = "hhui.li@outlook.com"},
+]
 license = "MIT"
 keywords = ["multiple-sequence-alignment", "partial-order-graph-alignment"]
-description = "pyabpoa: SIMD-based partial order alignment using adaptive band"
+description = "TeloXplorer-maintained abPOA fork with 128-character ASCII alignment support"
 readme = "python/README.md"
+
+[project.urls]
+Repository = "https://github.com/hhuili/abPOA"
+Upstream = "https://github.com/yangao07/abPOA"
+"Upstream issue" = "https://github.com/yangao07/abPOA/issues/91"
+"Upstream pull request" = "https://github.com/yangao07/abPOA/pull/92"

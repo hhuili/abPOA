@@ -16,7 +16,9 @@ include src/abpoa_simd.h
 include src/simd_instruction.h
 include src/utils.h
 recursive-include include/ *.h
+include include/simde/COPYING
 include python/cabpoa.pxd
-include python/pyabpoa.c
 include python/pyabpoa.pyx
 include python/README.md
+include python/test_ascii.py
+include LICENSE

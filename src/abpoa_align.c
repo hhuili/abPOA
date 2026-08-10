@@ -14,7 +14,6 @@ void gen_simple_mat(abpoa_para_t *abpt) {
     int match = abpt->match < 0 ? -abpt->match : abpt->match;
     int mismatch = abpt->mismatch > 0? -abpt->mismatch : abpt->mismatch;
     
-    // Check if we are in ASCII mode
     if (m == 128) {
         for (i = 0; i < m; ++i) {
             for (j = 0; j < m; ++j) {
@@ -22,7 +21,6 @@ void gen_simple_mat(abpoa_para_t *abpt) {
             }
         }
     } else {
-        // Original logic for m=5 or m=27
         for (i = 0; i < m - 1; ++i) {
             for (j = 0; j < m - 1; ++j)
                 abpt->mat[i * m + j] = i == j ? match : mismatch;
@@ -178,11 +176,14 @@ void abpoa_post_set_para(abpoa_para_t *abpt) {
     if (abpt->align_mode == ABPOA_LOCAL_MODE) abpt->wb = -1;
     int i;
     
-    // Add the bypass condition for m=128 ASCII mapping
     if (abpt->m == 128) {
-        for (i = 0; i < 256; ++i) {
+        for (i = 0; i < 128; ++i) {
             ab_char26_table[i] = i;
             ab_char256_table[i] = i;
+        }
+        for (; i < 256; ++i) {
+            ab_char26_table[i] = 127;
+            ab_char256_table[i] = 127;
         }
     } else if (abpt->m > 5) { // for aa sequence
         for (i = 0; i < 256; ++i) {
