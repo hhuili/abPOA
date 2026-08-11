@@ -1,4 +1,4 @@
-# pyabpoa (TeloXplorer Fork)
+# telox-pyabpoa
 This is a custom fork of the [abPOA](https://github.com/yangao07/abPOA) (v1.5.6) project, originally developed by Yan Gao (yangao@ds.dfci.harvard.edu).
 
 **Modifications:**
